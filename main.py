@@ -7,7 +7,7 @@ intents = discord.Intents.default()
 intents.message_content = True
 
 with open("token.txt") as tfd:
-    TOKEN = tfd.readline().strop("\r\n ")
+    TOKEN = tfd.readline().strip("\r\n ")
 
 # bot = commands.Bot(command_prefix='$', intents=intents)
 

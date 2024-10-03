@@ -8,6 +8,10 @@ intents.message_content = True
 
 with open("token.txt") as tfd:
     TOKEN = tfd.readline().strip("\r\n ")
+    
+with open("disconnectable_users.txt") as tfd:
+    DISCONNECTABLE_USERS = []
+    DISCONNECTABLE_USERS.append(int(tfd.readline()))
 
 # bot = commands.Bot(command_prefix='$', intents=intents)
 
@@ -72,7 +76,7 @@ async def joined(interaction: discord.Interaction, member: discord.Member):
 @client.tree.command()
 async def disconnect(interaction: discord.Interaction, member: discord.Member):
     """disconnects a member from their current voice channel"""
-    if member.id in [331082223677734923]:
+    if member.id in [DISCONNECTABLE_USERS]:
         try:
             await member.move_to(channel = None, reason="Requested by command")
             await interaction.response.send_message(f"Disconnected {member}")
